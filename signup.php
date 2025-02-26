@@ -47,6 +47,11 @@
     <title>Registrati</title>
     <link rel="stylesheet" href="./stylesheets/auth.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preload" href="QuanSlim-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="QuanSlim-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="QuanSlim-Italic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="QuanSlim-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 </head>
 <body>

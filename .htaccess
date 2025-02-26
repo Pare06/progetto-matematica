@@ -5,3 +5,6 @@ RewriteRule ^([^/.]+)$ $1.php [L]
 
 RewriteCond %{THE_REQUEST} "\s/([^/.]+)\.php" [NC]
 RewriteRule ^([^/.]+)\.php$ /$1 [R=301,L]
+
+AddType application/font-woff2 .woff2
+AddType application/font-woff .woff

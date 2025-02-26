@@ -6,8 +6,8 @@ body {
 }
 
 h1 {
-	color: var(--title);
-	font-family: 'MaisonNeue', sans-serif;
+	color: rgb(75, 64, 240);
+	font-size: 100px;
 }
 
 input {
