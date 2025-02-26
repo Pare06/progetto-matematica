@@ -67,7 +67,7 @@
                     <input type="text" name="nome" placeholder="Nome *" required />
                     <input type="text" name="cognome" placeholder="Cognome *" required />
                     <input type="text" name="email" placeholder="Indirizzo email *" required />
-                    <span><input type="password" name="password" id="password" placeholder="Password *" required /> <span></span></span>
+                    <span class="container_sections_signup_password"><input type="password" name="password" id="password" placeholder="Password *" required /> <span><i class="fa-solid fa-eye-slash"></i></span></span>
                     <input type="password" name="confermapass" id="conferma" placeholder="Conferma password *" required />
                     <input class="submit" type="submit" value="Registrati" />
                     <span class="line-with-text">ㅤOppureㅤ</span>
