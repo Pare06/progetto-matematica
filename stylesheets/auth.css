@@ -134,6 +134,13 @@ input:focus {
 	color: var(--primary_color);
 }
 
+//la lunghezza della sezione dev'essere lun
+.container_sections_signup_password {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
 @media (max-width: 768px) {
 	.container {
 		width: 90%;
