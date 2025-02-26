@@ -4,13 +4,22 @@
     font-size: 20px;
 }
 
-:root {
+:root.light {
     --background_color: #ffffff;
     --primary_color: #ff0033;
     --secondary_color: #f2f2f2;
     --title: #0f0f0f;
     --text: #0f0f0f;
 }
+
+:root.dark {
+    --background_color: #1d1e26;
+    --primary_color: #ff0033;
+    --secondary_color: #323442;
+    --title: #ffffff;
+    --text: #ffffff;
+}
+
 
 @font-face {
     font-family: 'Quan Slim';

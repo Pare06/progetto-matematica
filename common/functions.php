@@ -26,8 +26,33 @@
 
     function get_id_from_email($email, $table) {
         global $conn;
-        $stmt2 = $conn->prepare("SELECT id FROM $table WHERE email = ?");
-        $stmt2->bind_param("s", $email);
-        $stmt2->execute();
-        return $stmt2->get_result()->fetch_assoc()["id"];
+        $stmt = $conn->prepare("SELECT id FROM $table WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc()["id"] ?? null;
+    }
+
+    function is_logged_with_google($email, $table) {
+        global $conn;
+        $stmt = $conn->prepare("SELECT 1 FROM $table WHERE email = ? AND password IS NULL");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        return $stmt->get_result()->num_rows > 0;
+    }
+
+    function email_already_exists($email) {
+        global $conn;
+        $stmt = $conn->prepare("SELECT 1 FROM studenti WHERE email = ? UNION SELECT 1 FROM professori WHERE email = ?");
+        $stmt->bind_param("ss", $email, $email);
+        $stmt->execute();
+        echo $stmt->get_result()->num_rows;
+        return $stmt->get_result()->num_rows > 0;
+    }
+
+    function fetch_error() {
+        global $error;
+        if (isset($_SESSION["error"])) {
+            $error = $_SESSION["error"];
+            unset($_SESSION["error"]);
+        }
     }

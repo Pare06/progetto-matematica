@@ -3,6 +3,8 @@
 
     require_once "./common/imports.php";
 
+    fetch_error();
+
     $login_url = $googleClient->createAuthUrl();
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -19,12 +21,7 @@
             $password = password_hash($password, PASSWORD_BCRYPT);
             $nome .= " $cognome";
 
-            $stmt = $conn->prepare("SELECT 1 FROM $table WHERE email = ?");
-            $stmt->bind_param("s", $email);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            if ($result->num_rows > 0) {
+            if (email_already_exists($email)) {
                 $error = "Un account con questa email esiste già!";
             } else {
                 $stmt1 = $conn->prepare("INSERT INTO $table (nome, email, password) VALUES (?, ?, ?)");
@@ -35,6 +32,8 @@
             
                 $_SESSION["id"] = $id;
                 $_SESSION["tipo"] = $tipoAccount;
+                header("Location: ./" .($tipoAccount == 1 ? "professore" : "studente"));
+                exit;
             }
         }
     }
@@ -54,34 +53,50 @@
     <link rel="preload" href="QuanSlim-Bold.woff2" as="font" type="font/woff2" crossorigin>
     
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+    <script src="./js/show_hide_psw.js"></script>
+    <script src="./js/theme_switcher.js"></script>
 </head>
 <body>
     <form action="./signup" method="POST">
-        <!-- slider studente/prof che farà il signorino (chi è il signorino?) -->
-
         <div class="container">
-            <div class="container_sections">
-                <div class="container_sections_signup">
-                    <h1>Registrati</h1>
-                    <input type="hidden" name="tipo" value="1" />
-                    <input type="text" name="nome" placeholder="Nome *" required />
-                    <input type="text" name="cognome" placeholder="Cognome *" required />
-                    <input type="text" name="email" placeholder="Indirizzo email *" required />
-                    <span class="container_sections_signup_password"><input type="password" name="password" id="password" placeholder="Password *" required /> <span><i class="fa-solid fa-eye-slash"></i></span></span>
-                    <input type="password" name="confermapass" id="conferma" placeholder="Conferma password *" required />
-                    <input class="submit" type="submit" value="Registrati" />
-                    <span class="line-with-text">ㅤOppureㅤ</span>
-                    <a href="<?= $login_url ?? '#' ?>"><button class="submit" type="button"><i class="fa-brands fa-google"></i>ㅤAccedi con Google</button></a>
+            <div class="container_vertical">
+                <div class="container_upper">
+                    <div class="container_sections">
+                        <div class="container_sections_signup">
+                            <h1>Registrati</h1>
+                            <input type="hidden" name="tipo" value="1" /> <!-- (leva quando c'è lo slider) -->
+                            <input type="text" name="nome" placeholder="Nome *" required />
+                            <input type="text" name="cognome" placeholder="Cognome *" required />
+                            <input type="text" name="email" placeholder="Indirizzo email *" required />
+                            <div class="password-container">
+                                <input type="password" name="password" id="password" placeholder="Password *" required />
+                                <span class="toggle-password" aria-label="Toggle password visibility">
+                                    <i class="fa-solid fa-eye-slash"></i>
+                                </span>
+                            </div>
+                            <div class="password-container">
+                                <input type="password" name="confermapass" id="conferma" placeholder="Conferma password *" required />
+                                <span class="toggle-password" aria-label="Toggle password visibility">
+                                    <i class="fa-solid fa-eye-slash"></i>
+                                </span>
+                            </div>
+                            <input class="submit" type="submit" value="Registrati" />
+                            <span class="line-with-text">ㅤOppureㅤ</span>
+                            <a href="<?= $login_url ?? '#' ?>"><button class="submit" type="button"><i class="fa-brands fa-google"></i>ㅤAccedi con Google</button></a>
+                        </div>
+                        <div class="container_sections_login">
+                            <dotlottie-player src="https://lottie.host/b297b8f7-58c5-4aeb-aa03-a287c257bf17/nagvWrpn7y.lottie" background="transparent" speed="1" style="width: 300px; height: 300px" loop autoplay></dotlottie-player>
+                            <span class="title">Benvenuto in <span class="highlight">Scapegoat</span>!</span>
+                            <span class="line-with-text">ㅤHai già un account?ㅤ</span>
+                            <button class="submit" type="button">Accedi</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="container_sections_login">
-                <dotlottie-player src="https://lottie.host/b297b8f7-58c5-4aeb-aa03-a287c257bf17/nagvWrpn7y.lottie" background="transparent" speed="1" style="width: 300px; height: 300px" loop autoplay></dotlottie-player>
-                    <span class="title">Benvenuto in <span class="highlight">{nome ganzo}</span>!</span>
-                    <span class="line-with-text">ㅤHai già un account?ㅤ</span>
-                    <button class="submit" type="button">Accedi</button>
+                <div class="container_lower">
+                    <span><i id="theme" class="fa-solid fa-sun"></i></span>
                 </div>
             </div>
-            <!---->
-        </div>
+        </>
     </form>
 </body>
 </html>

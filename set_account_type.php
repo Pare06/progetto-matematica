@@ -24,9 +24,15 @@
             $googleClient->authenticate($_GET['code']);
             $user = $googleOauth->userinfo->get();
             
-            $stmt = $conn->prepare("INSERT INTO $tabella (nome, email) VALUES (?, ?)");
             $name = $user->getName();
             $email = $user->getEmail();
+            if (email_already_exists($email)) { // NON VA DIO CANE
+                $_SESSION["error"] = "Un account con questa email esiste già!";
+                header("Location: signup");
+                exit;
+            }
+
+            $stmt = $conn->prepare("INSERT INTO $tabella (nome, email) VALUES (?, ?)");
             $stmt->bind_param("ss", $name, $email); 
             $stmt->execute();
 
@@ -37,7 +43,6 @@
         
             $_SESSION["id"] = $id;
             $_SESSION["tipo"] = $tabella == "studenti" ? 0 : 1;
-            
             header("Location: index.php");
             exit;
         }

@@ -134,15 +134,77 @@ input:focus {
 	color: var(--primary_color);
 }
 
-.container_sections_signup_password {
-	display: flex;
-	flex-direction: row;
+.password-container {
+	position: relative;
+	width: 80%;
+  }
+  .password-container input {
 	width: 100%;
-	justify-content: center;
-	align-items: center;
-}
+	padding-right: 40px; /* Add space for the eye icon */
+  }
+  
+  .toggle-password {
+	position: absolute;
+	right: 10px; /* Adjust as needed */
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	color: var(--title);
+	opacity: .4;
+	transition: opacity .3s ease-in-out;
+  }
+  
+  .toggle-password:hover {
+	opacity: 1;
+	color: var(--title);
+	transition: opacity .3s ease-in-out;
+  }
 
-@media (max-width: 768px) {
+  .fa-eye {
+	transform: translateX(-1.1px)
+  }
+
+  .fa-moon {
+	margin-right: 10px;
+  }
+
+  .container_vertical {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+  }
+
+  .container_upper {
+	height: 95%;
+  }
+
+  .container_lower {
+	height: 5%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+  }
+
+  
+  #theme {
+	transform: translate(-100%, -100%);
+	font-size: 30px;
+	color: var(--text);
+	opacity: .3;
+	transition: opacity .3s ease-in-out;
+	cursor: pointer;
+  }
+  
+  #theme:hover {
+	opacity: 1;
+	transition: traopacity .3s ease-in-out;
+  }
+/*
+  #hover:active {
+	.scale-effectale(0.5);
+  }
+scaleAnimation (max-width: 768px) {
 	.container {
 		width: 90%;
 		height: 80%;
@@ -155,4 +217,4 @@ input:focus {
 	.container_sections_signup, .container_sections_login {
 		width: 100%;
 	}
-}
+}*/
