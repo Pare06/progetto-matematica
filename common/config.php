@@ -16,7 +16,7 @@
     }
 
     const GOOGLE_CLIENTID = "286996823248-cqpbhaebapn9ompaefpnjl4n05732h8u";
-    const GOOGLE_SECRET = "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";
+    const GOOGLE_SECRET = " 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";
     const GOOGLE_REDIRECTURI = "https://e559-151-43-171-76.ngrok-free.app/PROGETTO%20MATTO/set_account_type";
 
     $googleClient = new Google_Client();

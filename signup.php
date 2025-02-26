@@ -39,6 +39,7 @@
         }
     }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,7 +67,7 @@
                     <input type="text" name="nome" placeholder="Nome *" required />
                     <input type="text" name="cognome" placeholder="Cognome *" required />
                     <input type="text" name="email" placeholder="Indirizzo email *" required />
-                    <input type="password" name="password" id="password" placeholder="Password *" required />
+                    <span><input type="password" name="password" id="password" placeholder="Password *" required /> <span></span></span>
                     <input type="password" name="confermapass" id="conferma" placeholder="Conferma password *" required />
                     <input class="submit" type="submit" value="Registrati" />
                     <span class="line-with-text">ㅤOppureㅤ</span>
@@ -74,6 +75,9 @@
                 </div>
                 <div class="container_sections_login">
                 <dotlottie-player src="https://lottie.host/b297b8f7-58c5-4aeb-aa03-a287c257bf17/nagvWrpn7y.lottie" background="transparent" speed="1" style="width: 300px; height: 300px" loop autoplay></dotlottie-player>
+                    <span class="title">Benvenuto in <span class="highlight">{nome ganzo}</span>!</span>
+                    <span class="line-with-text">ㅤHai già un account?ㅤ</span>
+                    <button class="submit" type="button">Accedi</button>
                 </div>
             </div>
             <!---->
