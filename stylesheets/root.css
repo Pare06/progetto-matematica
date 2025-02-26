@@ -1,34 +1,42 @@
 * {
 	box-sizing: border-box;
-    font-family: 'MaisonNeue' !important;
+    font-family: 'QuanSlim', 'Times New Roman', sans-serif;
 }
 
 :root {
-    --background_color: #323437;
-    --primary_color: #2c2e31;
-    --secondary_color: #5f5f61;
-    --title: #e2b714;
-    --text: #ffffff;
+    --background_color: #ffffff;
+    --primary_color: #ff0033;
+    --secondary_color: #f2f2f2;
+    --title: #0f0f0f;
+    --text: #0f0f0f;
 }
 
-
 @font-face {
-    font-family: "MaisonNeue";
-    src: url("./../fonts/MaisonNeueLight.ttf") format("truetype");
-    font-weight: 300;
+    font-family: 'QuanSlim';
+    src: url('./../fonts/QuanSlim-Regular.ttf') format('truetype');
+    font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: "MaisonNeue";
-    src: url("./../fonts/MaisonNeueBook.ttf") format("truetype");
-    font-weight: 400;
+    font-family: 'QuanSlim';
+    src: url('./../fonts/QuanSlim-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'QuanSlim';
+    src: url('./../fonts/QuanSlim-Bold.ttf') format('truetype');
+    font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
-    font-family: "MaisonNeue";
-    src: url("./../fonts/MaisonNeueBold.ttf") format("truetype");
-    font-weight: 700;
+    font-family: 'QuanSlim';
+    src: url('./../fonts/QuanSlim-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
     font-style: normal;
 }
+
+
