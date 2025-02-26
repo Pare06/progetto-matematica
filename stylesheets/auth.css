@@ -1,0 +1,112 @@
+@import url(./root.css);
+@import url(./webkit.css);
+
+body {
+    background-color: var(--background_color);
+}
+
+h1 {
+	color: var(--title);
+	font-family: 'MaisonNeue', sans-serif;
+}
+
+input {
+	background-color: var(--background_color);
+	border: 1px solid var(--background_color);
+    border-radius: 5px;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 80%;
+	box-shadow: 1px 1px #0000003f;
+	color: var(--secondary_color);
+}
+
+input:focus {
+    outline: none;
+}
+
+.container {
+
+	max-width: 100%;
+	max-height: 100%;
+	background-color: var(--primary_color);
+
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 70%;
+	width: 50%;
+	border-radius: 20px;
+}
+
+.container_sections {
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+	width: 100%;
+}
+
+.container_sections_signup, .container_sections_login  {
+	display: flex;
+	flex-direction: column;
+
+	height: 100%;
+	width: 50%;
+}
+
+.container_sections_signup  {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.container_sections_login {
+
+}
+
+.submit {
+	border-radius: 5px;
+	border: 1px solid var(--title);
+	background-color: var(--title);
+	color: var(--text);
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+	box-shadow: 1px 1px #0000003f;
+}
+
+.submit:active {
+	transform: scale(0.95);
+}
+
+.submit:focus {
+	outline: none;
+}
+
+.submit.ghost {
+	background-color: transparent;
+	border: 2px solid var(--title);
+	color: var(--title);
+	box-shadow: 1px 1px #0000003f;
+}
+
+
+
+@media (max-width: 768px) {
+	.container {
+		width: 90%;
+		height: 80%;
+	}
+
+	.container_sections {
+		flex-direction: column;
+	}
+
+	.container_sections_signup, .container_sections_login {
+		width: 100%;
+	}
+}

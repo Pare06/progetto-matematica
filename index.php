@@ -1,14 +1,9 @@
 <?php
-    require_once "imports.php";
+    session_start();
+    if (isset($_SESSION["id"])) {
+        $tipo = $_SESSION["tipo"] == 1 ? "professore" : "studente";
+        header("Location: $tipo/");
+    } else {
+        header("Location: signup.php");
+    }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>boh</title>
-</head>
-<body>
-    
-</body>
-</html>

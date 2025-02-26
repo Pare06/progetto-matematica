@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Ensure .php extension is hidden in URLs
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^/.]+)$ $1.php [L]
+
+# Redirect URLs with .php to clean URL version
+RewriteCond %{THE_REQUEST} "\s/([^/.]+)\.php" [NC]
+RewriteRule ^([^/.]+)\.php$ /$1 [R=301,L]

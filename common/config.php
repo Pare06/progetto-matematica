@@ -3,7 +3,7 @@
         "host" => "localhost",
         "user" => "root",
         "pass" => null,
-        "db" => "progetto_matematica"
+        "db" => "piattaforma_matematica"
     ];
 
     mysqli_report(MYSQLI_REPORT_OFF);

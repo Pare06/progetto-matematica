@@ -6,9 +6,12 @@ CREATE TABLE professori (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
     cognome VARCHAR(50) NOT NULL,
-    foto VARCHAR(100) NOT NULL,
+    foto VARCHAR(100),
     email VARCHAR(100) NOT NULL,
-    password CHAR(60) NOT NULL
+    password CHAR(60),
+    oauth_code VARCHAR(500),
+    -- controlla se uno è null e uno non null
+    CHECK(password IS NULL XOR oauth_code IS NULL)
 );
 
 CREATE TABLE classi (
@@ -23,12 +26,14 @@ CREATE TABLE studenti (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
     cognome VARCHAR(50) NOT NULL,
-    foto VARCHAR(100) NOT NULL,
+    foto VARCHAR(100),
     email VARCHAR(100) NOT NULL,
-    password CHAR(60) NOT NULL,
+    password CHAR(60),
+    oauth_code VARCHAR(500),
     classe INT,
     FOREIGN KEY (classe) REFERENCES classi(id)
-        ON DELETE SET NULL
+        ON DELETE SET NULL,
+    CHECK(password IS NULL XOR oauth_code IS NULL)
 );
 
 CREATE TABLE compiti (
@@ -44,7 +49,6 @@ CREATE TABLE esercizi (
     risposta_aperta VARCHAR(1000),
     risposte_multiple VARCHAR(20),
     commento_errore VARCHAR(1000),
-    -- controlla se uno è null e uno non null
     CHECK(risposta_aperta IS NULL XOR risposte_multiple IS NULL)
 );
 

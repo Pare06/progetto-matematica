@@ -1,0 +1,34 @@
+* {
+	box-sizing: border-box;
+    font-family: 'MaisonNeue' !important;
+}
+
+:root {
+    --background_color: #323437;
+    --primary_color: #2c2e31;
+    --secondary_color: #5f5f61;
+    --title: #e2b714;
+    --text: #ffffff;
+}
+
+
+@font-face {
+    font-family: "MaisonNeue";
+    src: url("./../fonts/MaisonNeueLight.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "MaisonNeue";
+    src: url("./../fonts/MaisonNeueBook.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "MaisonNeue";
+    src: url("./../fonts/MaisonNeueBold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
