@@ -4,8 +4,11 @@ USE piattaforma_matematica;
 
 CREATE TABLE professori (
     id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
     cognome VARCHAR(50) NOT NULL,
-    nome VARCHAR(50) NOT NULL
+    foto VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password CHAR(60) NOT NULL
 );
 
 CREATE TABLE classi (
@@ -13,12 +16,16 @@ CREATE TABLE classi (
     nome VARCHAR(10) NOT NULL,
     professore INT NOT NULL,
     FOREIGN KEY (professore) REFERENCES professori(id)
+        ON DELETE CASCADE
 );
 
 CREATE TABLE studenti (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
     cognome VARCHAR(50) NOT NULL,
+    foto VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password CHAR(60) NOT NULL,
     classe INT,
     FOREIGN KEY (classe) REFERENCES classi(id)
         ON DELETE SET NULL
@@ -80,6 +87,7 @@ CREATE TABLE compiti_esercizi (
 );
 
 CREATE TABLE feedback (
+    id INT PRIMARY KEY,
     studente INT NOT NULL,
     compiti_classi INT NOT NULL,
     testo VARCHAR(1000) NOT NULL,
