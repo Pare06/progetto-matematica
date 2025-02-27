@@ -26,7 +26,7 @@
             
             $name = $user->getName();
             $email = $user->getEmail();
-            if (email_already_exists($email)) { // NON VA DIO CANE
+            if (email_already_exists($email)) {
                 $_SESSION["error"] = "Un account con questa email esiste già!";
                 header("Location: signup");
                 exit;
