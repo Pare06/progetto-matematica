@@ -21,6 +21,8 @@ input {
 	width: 80%;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 3px 2px rgba(0, 0, 0, 0.1);
 	color: var(--text);
+	border: 1.5px solid transparent;
+	transition: border 0.3s ease-in-out;
 }
 
 ::placeholder {
@@ -29,6 +31,8 @@ input {
 
 input:focus {
     outline: none;
+    border: 1.5px solid var(--primary_color);
+	transition: border 0.3s ease-in-out;
 }
 
 .container {
@@ -188,33 +192,41 @@ input:focus {
 
   
   #theme {
-	transform: translate(-100%, -100%);
+	transform: translate(-100%, -100%) scale(1);
 	font-size: 30px;
 	color: var(--text);
 	opacity: .3;
-	transition: opacity .3s ease-in-out;
 	cursor: pointer;
-  }
+	transition: opacity .2s ease-in-out;
+}
+
+#theme:not(:active) {
+	animation: clickButton .2s ease-in-out;
+}
+
+#theme:active {
+	animation-fill-mode: forwards;
+}
+
+@keyframes clickButton {
+	0% {
+	  transform: translate(-100%, -100%) scale(1);
+	}
+	50% {
+	  transform: translate(-100%, -100%) scale(0.7);
+	}
+	80% {
+	  transform: translate(-100%, -100%) scale(1.1);
+	}
+	100% {
+	  transform: translate(-100%, -100%) scale(1);
+	}
+}
+
+
+
   
   #theme:hover {
 	opacity: 1;
-	transition: traopacity .3s ease-in-out;
+	transition: opacity .3s ease-in-out;
   }
-/*
-  #hover:active {
-	.scale-effectale(0.5);
-  }
-scaleAnimation (max-width: 768px) {
-	.container {
-		width: 90%;
-		height: 80%;
-	}
-
-	.container_sections {
-		flex-direction: column;
-	}
-
-	.container_sections_signup, .container_sections_login {
-		width: 100%;
-	}
-}*/

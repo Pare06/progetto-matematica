@@ -19,13 +19,12 @@
         if ($error == "") {
             $table = $tipoAccount == 1 ? "professori" : "studenti";
             $password = password_hash($password, PASSWORD_BCRYPT);
-            $nome .= " $cognome";
 
             if (email_already_exists($email)) {
                 $error = "Un account con questa email esiste già!";
             } else {
-                $stmt1 = $conn->prepare("INSERT INTO $table (nome, email, password) VALUES (?, ?, ?)");
-                $stmt1->bind_param("sss", $nome, $email, $password);
+                $stmt1 = $conn->prepare("INSERT INTO $table (nome, cognome, email, password) VALUES (?, ?, ?, ?)");
+                $stmt1->bind_param("ssss", $nome, $cognome, $email, $password);
                 $stmt1->execute();
 
                 $id = get_id_from_email($email, $table);
@@ -44,7 +43,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrati</title>
+    <title>Scapegoat | Registrati</title>
     <link rel="stylesheet" href="./stylesheets/auth.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preload" href="QuanSlim-Regular.woff2" as="font" type="font/woff2" crossorigin>
@@ -57,6 +56,7 @@
     <script src="./js/theme_switcher.js"></script>
 </head>
 <body>
+    <!-- $error -->
     <form action="./signup" method="POST">
         <div class="container">
             <div class="container_vertical">
@@ -88,7 +88,7 @@
                             <dotlottie-player src="https://lottie.host/b297b8f7-58c5-4aeb-aa03-a287c257bf17/nagvWrpn7y.lottie" background="transparent" speed="1" style="width: 300px; height: 300px" loop autoplay></dotlottie-player>
                             <span class="title">Benvenuto in <span class="highlight">Scapegoat</span>!</span>
                             <span class="line-with-text">ㅤHai già un account?ㅤ</span>
-                            <button class="submit" type="button">Accedi</button>
+                            <a href="./login"><button class="submit" type="button">Accedi</button></a>
                         </div>
                     </div>
                 </div>

@@ -5,6 +5,7 @@ USE piattaforma_matematica;
 CREATE TABLE professori (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
+    cognome VARCHAR(100) NOT NULL,
     foto VARCHAR(100),
     email VARCHAR(100) NOT NULL,
     password CHAR(60)
@@ -21,6 +22,7 @@ CREATE TABLE classi (
 CREATE TABLE studenti (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
+    cognome VARCHAR(100) NOT NULL,
     foto VARCHAR(100),
     email VARCHAR(100) NOT NULL,
     password CHAR(60),

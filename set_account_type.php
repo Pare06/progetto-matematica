@@ -24,16 +24,19 @@
             $googleClient->authenticate($_GET['code']);
             $user = $googleOauth->userinfo->get();
             
-            $name = $user->getName();
+            $name = $user->getGivenName();
+            $surname = $user->getFamilyName();
             $email = $user->getEmail();
-            if (email_already_exists($email)) { // NON VA DIO CANE
+            $photo = $user->getPicture();
+            
+            if (email_already_exists($email)) {
                 $_SESSION["error"] = "Un account con questa email esiste già!";
                 header("Location: signup");
-                exit;
+                die();
             }
 
-            $stmt = $conn->prepare("INSERT INTO $tabella (nome, email) VALUES (?, ?)");
-            $stmt->bind_param("ss", $name, $email); 
+            $stmt = $conn->prepare("INSERT INTO $tabella (nome, cognome, foto, email) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("ssss", $name, $surname, $photo, $email);
             $stmt->execute();
 
             $stmt2 = $conn->prepare("SELECT id FROM $tabella WHERE email = ?");

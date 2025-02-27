@@ -45,7 +45,6 @@
         $stmt = $conn->prepare("SELECT 1 FROM studenti WHERE email = ? UNION SELECT 1 FROM professori WHERE email = ?");
         $stmt->bind_param("ss", $email, $email);
         $stmt->execute();
-        echo $stmt->get_result()->num_rows;
         return $stmt->get_result()->num_rows > 0;
     }
 
@@ -55,4 +54,29 @@
             $error = $_SESSION["error"];
             unset($_SESSION["error"]);
         }
+    }
+
+    function set_error_and_refresh($msg) {
+        if (!empty($msg)) {
+            $_SESSION["error"] = $msg;
+            header("Location: " .$_SERVER["HTTP_REFERER"]);
+            exit;
+        }
+    }
+
+    function load_teacher() {
+        global $conn;
+        $stmt = $conn->prepare("SELECT nome, cognome, foto, email FROM professori WHERE id = ?");
+        $stmt->bind_param("i", $_SESSION["id"]);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        
+        if ($res->num_rows == 0) { // acc eliminato
+            session_unset();
+            session_destroy();
+            header("Location: /PROGETTO MATTO/signup");
+            exit;
+        }
+
+        return $res->fetch_assoc();
     }

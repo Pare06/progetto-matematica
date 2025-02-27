@@ -12,6 +12,17 @@ document.addEventListener("DOMContentLoaded", function () {
     function applyTheme(theme) {
         document.documentElement.className = theme;
         themeToggle.className = `fa-solid ${theme === "dark" ? "fa-moon" : "fa-sun"}`;
+        reloadCSS();
+    }
+
+    function reloadCSS() {
+        const links = document.querySelectorAll("link[rel='stylesheet']");
+        links.forEach(link => {
+            const newLink = link.cloneNode();
+            newLink.href = link.href.split("?")[0] + "?v=" + new Date().getTime();
+            newLink.onload = () => link.remove();
+            link.parentNode.insertBefore(newLink, link.nextSibling);
+        });
     }
 
     if (savedTheme) {
@@ -37,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
             date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
             expires = "; expires=" + date.toUTCString();
         }
-        document.cookie = name + "=" + value + "; path=/" + expires;
+        document.cookie = `${name}=${value}; path=/;${expires}`;
     }
 
     function getCookie(name) {
