@@ -27,14 +27,19 @@
     $email = $user->getEmail();
     $photo = $user->getPicture();
     
-    if (isset($email) && email_already_exists($email) && is_logged_with_google($email)) {
-        $tabella = get_table_from_email($email);
-        $_SESSION["id"] = get_id_from_email($email, $tabella);
-        $_SESSION["tipo"] = acctype_from_table($tabella);
-        
-        // Redirect to "/professore" if the account exists and is valid
-        header("Location: /professore");
-        die();
+    if (isset($email) && email_already_exists($email)) {
+        if (is_logged_with_google($email)) {
+            $tabella = get_table_from_email($email);
+            $_SESSION["id"] = get_id_from_email($email, $tabella);
+            $_SESSION["tipo"] = acctype_from_table($tabella);
+            
+            header("Location: /professore");
+            die();
+        } else {
+            $_SESSION["error"] = "Un account con questa email esiste già!";
+            header("Location: signup");
+            die();
+        }
     }
     
     if (isset($_GET["studente"])) {
@@ -44,12 +49,6 @@
     }
     
     if (isset($tabella)) {
-        if (email_already_exists($email)) {
-            $_SESSION["error"] = "Un account con questa email esiste già!";
-            header("Location: signup");
-            die();
-        }
-
         $stmt = $conn->prepare("INSERT INTO $tabella (nome, cognome, foto, email) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $name, $surname, $photo, $email);
         $stmt->execute();
