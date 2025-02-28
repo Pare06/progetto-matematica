@@ -33,7 +33,7 @@
             $_SESSION["id"] = get_id_from_email($email, $tabella);
             $_SESSION["tipo"] = acctype_from_table($tabella);
             
-            header("Location: /professore");
+            header("Location: /PROGETTO MATTO/");
             die();
         } else {
             $_SESSION["error"] = "Un account con questa email esiste già!";
@@ -50,6 +50,8 @@
     
     if (isset($tabella)) {
         $stmt = $conn->prepare("INSERT INTO $tabella (nome, cognome, foto, email) VALUES (?, ?, ?, ?)");
+        echo $name, $surname, $photo, $email;
+
         $stmt->bind_param("ssss", $name, $surname, $photo, $email);
         $stmt->execute();
     
