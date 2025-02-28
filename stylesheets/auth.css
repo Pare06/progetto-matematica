@@ -208,6 +208,11 @@ input:focus {
 	animation-fill-mode: forwards;
 }
 
+.error {
+	color: var(--primary_color);
+	font-weight: 600;
+}
+
 @keyframes clickButton {
 	0% {
 	  transform: translate(-100%, -100%) scale(1);
@@ -230,3 +235,98 @@ input:focus {
 	opacity: 1;
 	transition: opacity .3s ease-in-out;
   }
+
+  @media (max-width: 1500px) {
+    .submit {
+        font-size: 10px;
+        padding: 10px 10px;
+		font-size: 14px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .title, .highlight {
+        font-size: 30px;
+    }
+
+    input {
+        padding: 5px 6px;
+        font-size: 14px;
+    }
+
+    .toggle-password, .fa-eye-slash, .fa-eye {
+        font-size: 10px;
+    }
+
+    #theme {
+        font-size: 25px;
+    }
+
+	.error {
+		font-size: 15px;
+	}
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%;  /* Aumentata la larghezza del container */
+        height: 95%; /* Aumentata l'altezza per un aspetto più armonioso */
+    }
+
+    .container_sections {
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+
+    .container_sections_signup {
+        width: 100%;
+        height: 100%;
+    }
+
+    .container_sections_login {
+        display: none;
+    }
+
+    .submit {
+        font-size: 14px; /* Leggermente più grande per adattarsi al container più largo */
+        padding: 10px 20px;
+    }
+
+    h1 {
+        font-size: 35px; /* Più grande per bilanciare con il nuovo container */
+    }
+
+    .title, .highlight {
+        font-size: 35px;
+    }
+
+    input {
+        padding: 10px 12px;
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+
+    .toggle-password, .fa-eye-slash, .fa-eye {
+        font-size: 16px;
+    }
+
+    #theme {
+        font-size: 28px;
+    }
+
+    .error {
+        font-size: 16px;
+    }
+
+    .google-button {
+        font-size: 18px;
+    }
+}
+
+
+
+

@@ -32,10 +32,17 @@
         return $stmt->get_result()->fetch_assoc()["id"] ?? null;
     }
 
-    function is_logged_with_google($email, $table) {
+    function get_table_from_email($email) {
+        if (get_id_from_email($email, "studenti") != null) {
+            return "studenti";
+        }
+        return "professori";
+    }
+
+    function is_logged_with_google($email) {
         global $conn;
-        $stmt = $conn->prepare("SELECT 1 FROM $table WHERE email = ? AND password IS NULL");
-        $stmt->bind_param("s", $email);
+        $stmt = $conn->prepare("SELECT 1 FROM studenti WHERE email = ? AND password IS NULL UNION SELECT 1 FROM professori WHERE email = ? AND password IS NULL");
+        $stmt->bind_param("ss", $email, $email);
         $stmt->execute();
         return $stmt->get_result()->num_rows > 0;
     }
@@ -79,4 +86,8 @@
         }
 
         return $res->fetch_assoc();
+    }
+
+    function acctype_from_table($table) {
+        return $table == "professori" ? 1 : 0;
     }

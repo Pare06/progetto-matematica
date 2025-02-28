@@ -21,7 +21,7 @@
             $password = password_hash($password, PASSWORD_BCRYPT);
 
             if (email_already_exists($email)) {
-                $error = "Un account con questa email esiste già!";
+                set_error_and_refresh("Un account con questa email esiste già!");
             } else {
                 $stmt1 = $conn->prepare("INSERT INTO $table (nome, cognome, email, password) VALUES (?, ?, ?, ?)");
                 $stmt1->bind_param("ssss", $nome, $cognome, $email, $password);
@@ -80,6 +80,7 @@
                                     <i class="fa-solid fa-eye-slash"></i>
                                 </span>
                             </div>
+                            <p class="error"><?= $error ?></p>
                             <input class="submit" type="submit" value="Registrati" />
                             <span class="line-with-text">ㅤOppureㅤ</span>
                             <a href="<?= $login_url ?? '#' ?>"><button class="submit" type="button"><i class="fa-brands fa-google"></i>ㅤAccedi con Google</button></a>

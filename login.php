@@ -25,7 +25,7 @@
                 $table = $idStudente == null ? "professori" : "studenti";
                 $id = $idStudente ?? $idProfessore;
                 
-                $isGoogle = is_logged_with_google($email, $table);
+                $isGoogle = is_logged_with_google($email);
                 if ($isGoogle) {
                     set_error_and_refresh("Questo account è stato registrato con Google!");
                 } else {
@@ -80,6 +80,7 @@
                                     <i class="fa-solid fa-eye-slash"></i>
                                 </span>
                             </div>
+                            <p class="error"><?= $error ?></p>
                             <input class="submit" type="submit" value="Accedi" />
                             <span class="line-with-text">ㅤOppureㅤ</span>
                             <a href="<?= $login_url ?? '#' ?>"><button class="submit" type="button"><i class="fa-brands fa-google"></i>ㅤAccedi con Google</button></a>
